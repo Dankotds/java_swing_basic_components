@@ -27,13 +27,13 @@ public class StartJPanel {
         allJPanels.add(createCheckBox);
     }
 
-    private void ShowContent(int digit, int widht, int height){
+    private void ShowContent(int digit, int width, int height){
         frame.add(allJPanels.get(digit - 1));
         for (JPanel allJPanel : allJPanels) {
             allJPanel.setVisible(false);
         }
         allJPanels.get(digit - 1).setVisible(true);
-        frame.setSize(widht,height);
+        frame.setSize(width,height);
         frame.setVisible(true);
     }
 

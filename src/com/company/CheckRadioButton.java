@@ -9,43 +9,34 @@ public class CheckRadioButton extends JPanel {
     private JButton selectBt;
     private JRadioButton rbtTest1, rbtTest2, rbtTest3;
     private JTextField fieldWithRbtnText;
-    private String text;
+    private String inputTextToCompare;
 
     public CheckRadioButton() {
-        //super("Panel 3");
-        //setDefaultCloseOperation(HIDE_ON_CLOSE);
-        // Создание панели
-        //contents.setLayout(null);
+
         this.setLayout(null);
-        //contents.setLayout(new BorderLayout());
+
         fieldWithRbtnText = new JTextField();
         fieldWithRbtnText.setBounds(400,0, 300, 50);
-        //contents.add(fieldWithRbtnText);
         this.add(fieldWithRbtnText);
+
         selectBt = new JButton("Отметить JRadioButton");
         selectBt.setBounds(400, 70, 300, 50);
-        //contents.add(selectBt);
         this.add(selectBt);
+
         rbtTest1 = new JRadioButton("Test1");
         rbtTest1.setBounds(400, 140, 300, 50);
-        //contents.add(rbtTest1);
         this.add(rbtTest1);
+
         rbtTest2 = new JRadioButton("Test2");
         rbtTest2.setBounds(400, 210, 300, 50);
-        //contents.add(rbtTest2);
         this.add(rbtTest2);
+
         rbtTest3 = new JRadioButton("Test3");
         rbtTest3.setBounds(400, 280, 300, 50);
-        //contents.add(rbtTest3);
         this.add(rbtTest3);
-        // Замена панели содержимого
-        //setContentPane(contents);
-        // Определение размера окна
-        //setSize(300, 450);
 
         action();
 
-        // Открытие окна
         setVisible(true);
     }
 
@@ -60,20 +51,20 @@ public class CheckRadioButton extends JPanel {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 if (!fieldWithRbtnText.getText().equals("")) {
-                    text = fieldWithRbtnText.getText();
-                    if (rbtTest1.getText().equals(text)){
+                    inputTextToCompare = fieldWithRbtnText.getText();
+                    if (rbtTest1.getText().equals(inputTextToCompare)){
                         rbtTest1.setSelected(true);
                         rbtTest2.setSelected(false);
                         rbtTest3.setSelected(false);
                     } else{
 
-                        if (rbtTest2.getText().equals(text)){
+                        if (rbtTest2.getText().equals(inputTextToCompare)){
                             rbtTest1.setSelected(false);
                             rbtTest2.setSelected(true);
                             rbtTest3.setSelected(false);
                         } else{
 
-                            if (rbtTest3.getText().equals(text)){
+                            if (rbtTest3.getText().equals(inputTextToCompare)){
                                 rbtTest1.setSelected(false);
                                 rbtTest2.setSelected(false);
                                 rbtTest3.setSelected(true);

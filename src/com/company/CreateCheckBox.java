@@ -8,32 +8,30 @@ public class CreateCheckBox extends JPanel {
     private JTextField fieldForTheNumberOfBoxes;
     private JButton createChBoxesBt, startOrContinueBt, stopBt;
     private JCheckBox[] checkBoxes;
-    private int digit = 0, value_true, value_false;
-    private boolean stop = false;
+    private int checkboxNum = 0, checkboxToCheck, checkboxToUncheck;
+    private boolean scriptIsStopped = false;
 
     public CreateCheckBox(){
         this.setLayout(null);
-        //contents.setLayout(new BorderLayout());
+
         fieldForTheNumberOfBoxes = new JTextField();
         fieldForTheNumberOfBoxes.setBounds(400,0, 300, 50);
-        //contents.add(field1);
         this.add(fieldForTheNumberOfBoxes);
+
         createChBoxesBt = new JButton("Create JCheckBoxes");
         createChBoxesBt.setBounds(400, 70, 300, 50);
-        //contents.add(createChBoxesBt);
         this.add(createChBoxesBt);
+
         startOrContinueBt = new JButton("Start/Continue script");
         startOrContinueBt.setBounds(400, 140, 300, 50);
-        //contents.add(startOrContinueBt);
         this.add(startOrContinueBt);
+
         stopBt = new JButton("Pause script");
         stopBt.setBounds(400, 210, 300, 50);
-        //contents.add(stopBt);
         this.add(stopBt);
 
         action();
 
-        // Открытие окна
         setVisible(true);
     }
 
@@ -47,7 +45,7 @@ public class CreateCheckBox extends JPanel {
     }
 
     private void select_box(boolean state, int i, int j){
-        while(!stop) {
+        while(!scriptIsStopped) {
                 checkBoxes[i].setSelected(state);
                 checkBoxes[j].setSelected(state);
                 try {
@@ -64,17 +62,17 @@ public class CreateCheckBox extends JPanel {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 int y = 0;
-                value_true = 0;
-                value_false = 0;
+                checkboxToCheck = 0;
+                checkboxToUncheck = 0;
                 if (!fieldForTheNumberOfBoxes.getText().equals("")) {
-                    if(digit!=0){
-                        for(int i = 0; i<digit; i++){
+                    if(checkboxNum !=0){
+                        for(int i = 0; i< checkboxNum; i++){
                             checkBoxes[i].setVisible(false);
                         }
                     }
-                    digit = Integer.parseInt(fieldForTheNumberOfBoxes.getText());
-                    checkBoxes = new JCheckBox[digit];
-                    for(int i = 0; i < digit; i++){
+                    checkboxNum = Integer.parseInt(fieldForTheNumberOfBoxes.getText());
+                    checkBoxes = new JCheckBox[checkboxNum];
+                    for(int i = 0; i < checkboxNum; i++){
                         add_box(y, i);
                         y+=70;
                     }
@@ -88,27 +86,27 @@ public class CreateCheckBox extends JPanel {
         startOrContinueBt.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                stop = false;
-                if (!stop) {
+                scriptIsStopped = false;
+                if (!scriptIsStopped) {
                     new Thread(() -> {
-                        while(value_true < digit-value_true){
-                            select_box(true, value_true, (digit-1-value_true));
-                            if(stop) {
-                                value_true++;
+                        while(checkboxToCheck < checkboxNum - checkboxToCheck){
+                            select_box(true, checkboxToCheck, (checkboxNum -1- checkboxToCheck));
+                            if(scriptIsStopped) {
+                                checkboxToCheck++;
                                 break;
                             }
-                            value_true++;
+                            checkboxToCheck++;
                         }
-                        while(value_false < digit-value_false){
-                            select_box(false, value_false, (digit-1-value_false));
-                            if(stop) {
+                        while(checkboxToUncheck < checkboxNum - checkboxToUncheck){
+                            select_box(false, checkboxToUncheck, (checkboxNum -1- checkboxToUncheck));
+                            if(scriptIsStopped) {
                                 break;
                             }
-                            value_false++;
+                            checkboxToUncheck++;
                         }
-                        if(!stop){
-                            value_true = 0;
-                            value_false = 0;
+                        if(!scriptIsStopped){
+                            checkboxToCheck = 0;
+                            checkboxToUncheck = 0;
                         }
                     }).start();
                 }
@@ -118,9 +116,8 @@ public class CreateCheckBox extends JPanel {
         stopBt.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                if (!stop){
-                    stop = true;
-                    //ПАУЗА
+                if (!scriptIsStopped){
+                    scriptIsStopped = true;
                 }
             }
         });

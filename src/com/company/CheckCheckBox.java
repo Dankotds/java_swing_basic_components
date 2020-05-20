@@ -9,44 +9,36 @@ public class CheckCheckBox extends JPanel {
     private JButton selectBt;
     private JCheckBox chbTest1, chbTest2, chbTest3;
     private JTextField fieldWithChbxText;
-    private String text;
-    private boolean state;
+    private String inputTextToCompare;
+    private boolean isChecked;
 
     public CheckCheckBox(){
-        //super("Panel 4");
-        //setDefaultCloseOperation(HIDE_ON_CLOSE);
-        // Создание панели
-        //contents.setLayout(null);
+
         this.setLayout(null);
-        //contents.setLayout(new BorderLayout());
+
         fieldWithChbxText = new JTextField();
         fieldWithChbxText.setBounds(400,0, 300, 50);
-        //contents.add(fieldWithChbxText);
         this.add(fieldWithChbxText);
+
         selectBt = new JButton("Отметить JCheckBox");
         selectBt.setBounds(400, 70, 300, 50);
-        //contents.add(selectBt);
         this.add(selectBt);
+
         chbTest1 = new JCheckBox("Test1");
         chbTest1.setBounds(400, 140, 300, 50);
-        //contents.add(chbTest1);
         this.add(chbTest1);
+
         chbTest2 = new JCheckBox("Test2");
         chbTest2.setBounds(400, 210, 300, 50);
-        //contents.add(chbTest2);
         this.add(chbTest2);
+
         chbTest3 = new JCheckBox("Test3");
         chbTest3.setBounds(400, 280, 300, 50);
-        //contents.add(chbTest3);
         this.add(chbTest3);
-        // Замена панели содержимого
-        //setContentPane(contents);
-        // Определение размера окна
-        //setSize(300, 450);
+
 
         action();
 
-        // Открытие окна
         setVisible(true);
     }
 
@@ -60,20 +52,20 @@ public class CheckCheckBox extends JPanel {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 if (!fieldWithChbxText.getText().equals("")) {
-                    text = fieldWithChbxText.getText();
-                    if (chbTest1.getText().equals(text)){
-                        state = chbTest1.isSelected();
-                        chbTest1.setSelected(!state);
+                    inputTextToCompare = fieldWithChbxText.getText();
+                    if (chbTest1.getText().equals(inputTextToCompare)){
+                        isChecked = chbTest1.isSelected();
+                        chbTest1.setSelected(!isChecked);
                     } else{
 
-                        if (chbTest2.getText().equals(text)){
-                            state = chbTest2.isSelected();
-                            chbTest2.setSelected(!state);
+                        if (chbTest2.getText().equals(inputTextToCompare)){
+                            isChecked = chbTest2.isSelected();
+                            chbTest2.setSelected(!isChecked);
                         } else{
 
-                            if (chbTest3.getText().equals(text)){
-                                state = chbTest3.isSelected();
-                                chbTest3.setSelected(!state);
+                            if (chbTest3.getText().equals(inputTextToCompare)){
+                                isChecked = chbTest3.isSelected();
+                                chbTest3.setSelected(!isChecked);
                             } else{
                                 error_not_replay();
                             }

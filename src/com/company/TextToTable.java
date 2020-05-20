@@ -12,41 +12,31 @@ public class TextToTable extends JPanel {
     private JTextField fieldForText;
 
     public TextToTable(){
-        //super("Panel 5");
-        //setDefaultCloseOperation(HIDE_ON_CLOSE);
-        // Создание панели
-        //contents.setLayout(null);
         this.setLayout(null);
-        //contents.setLayout(new BorderLayout());
+
         fieldForText = new JTextField();
         fieldForText.setBounds(400,0, 300, 50);
-        //contents.add(fieldForText);
         this.add(fieldForText);
+
         to1ColBt = new JButton("Place text in 1st column");
         to1ColBt.setBounds(400, 70, 300, 50);
-        //contents.add(to1ColBt);
         this.add(to1ColBt);
+
         from1To2Bt = new JButton("1st -> 2nd");
         from1To2Bt.setBounds(400, 140, 300, 50);
-        //contents.add(from1To2Bt);
         this.add(from1To2Bt);
+
         from2To1Bt = new JButton("2nd -> 1st");
         from2To1Bt.setBounds(400, 210, 300, 50);
-        //contents.add(from2To1Bt);
         this.add(from2To1Bt);
+
         mainTable = new JTable(1,2);
         mainTable.setBounds(710, 20, 300, 17);
         mainTable.setGridColor(Color.orange);
-        //contents.add(mainTable);
         this.add(mainTable);
-        // Замена панели содержимого
-        //setContentPane(contents);
-        // Определение размера окна
-        //setSize(620, 310);
 
         action();
 
-        // Открытие окна
         setVisible(true);
     }
 

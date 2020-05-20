@@ -5,10 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
 public class AddToBox extends JPanel {
-    private String text;
+    private String textToAdd;
     private List<String> list = new ArrayList<>();
     private JButton addToBoxBt = new JButton("Внести данные в ComboBox");
     private JTextField fieldForNewWords = new JTextField();
@@ -50,8 +49,8 @@ public class AddToBox extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!fieldForNewWords.getText().equals("")) {
-                    text = fieldForNewWords.getText();
-                    add_to_Box(text);
+                    textToAdd = fieldForNewWords.getText();
+                    add_to_Box(textToAdd);
                     fieldForNewWords.setText("");
                 } else {
                     error_empty();
