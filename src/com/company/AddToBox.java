@@ -35,7 +35,7 @@ public class AddToBox extends JPanel {
         JOptionPane.showMessageDialog(this, "Ошибка!\nТакое слово уже добавлено!");
     }
     private void error_empty(){ JOptionPane.showMessageDialog(this, "Ошибка!\nПоле не заполнено!"); }
-    private void add_to_Box(String word) {
+    private void AddToComboBox(String word) {
         if (list.contains(word)) {
             error_replay();
         } else {
@@ -50,7 +50,7 @@ public class AddToBox extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 if (!fieldForNewWords.getText().equals("")) {
                     textToAdd = fieldForNewWords.getText();
-                    add_to_Box(textToAdd);
+                    AddToComboBox(textToAdd);
                     fieldForNewWords.setText("");
                 } else {
                     error_empty();
