@@ -38,13 +38,13 @@ public class CreateCheckBox extends JPanel {
     private void error_empty(){ JOptionPane.showMessageDialog(this, "Ошибка!\nПоле не заполнено!"); }
     private void error(){ JOptionPane.showMessageDialog(this, "Ошибка!\nЧто-то пошло не так!"); }
 
-    private void AddBox(int y, int i){
+    private void addBox(int y, int i){
         checkBoxes[i] = new JCheckBox("JCheckBox number " + (i+1));
         checkBoxes[i].setBounds(720, 0+y, 300,50);
         this.add(checkBoxes[i]);
     }
 
-    private void SelectBox(boolean state, int i, int j){
+    private void selectBox(boolean state, int i, int j){
         while(!scriptIsStopped) {
                 checkBoxes[i].setSelected(state);
                 checkBoxes[j].setSelected(state);
@@ -73,7 +73,7 @@ public class CreateCheckBox extends JPanel {
                     checkboxNum = Integer.parseInt(fieldForTheNumberOfBoxes.getText());
                     checkBoxes = new JCheckBox[checkboxNum];
                     for(int i = 0; i < checkboxNum; i++){
-                        AddBox(y, i);
+                        addBox(y, i);
                         y+=70;
                     }
                     fieldForTheNumberOfBoxes.setText("");
@@ -90,7 +90,7 @@ public class CreateCheckBox extends JPanel {
                 if (!scriptIsStopped) {
                     new Thread(() -> {
                         while(checkboxToCheck < checkboxNum - checkboxToCheck){
-                            SelectBox(true, checkboxToCheck, (checkboxNum -1- checkboxToCheck));
+                            selectBox(true, checkboxToCheck, (checkboxNum -1- checkboxToCheck));
                             if(scriptIsStopped) {
                                 checkboxToCheck++;
                                 break;
@@ -98,7 +98,7 @@ public class CreateCheckBox extends JPanel {
                             checkboxToCheck++;
                         }
                         while(checkboxToUncheck < checkboxNum - checkboxToUncheck){
-                            SelectBox(false, checkboxToUncheck, (checkboxNum -1- checkboxToUncheck));
+                            selectBox(false, checkboxToUncheck, (checkboxNum -1- checkboxToUncheck));
                             if(scriptIsStopped) {
                                 break;
                             }
